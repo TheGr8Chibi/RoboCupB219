@@ -6,9 +6,9 @@ task main()
 
 	int col1;
 	string t1;
-	int target = 60;
+	int target = 40;
 	int error;
-	float multiplier = 0.3;
+	float multiplier = 0.7;
 	float targetSpeed;
 
 	while(true){
