@@ -6,9 +6,9 @@ task main()
 
 	int col1;
 	string t1;
-	int target = 50;
+	int target = 60;
 	int error;
-	float multiplier = 0.2;
+	float multiplier = 0.3;
 	float targetSpeed;
 
 	while(true){
@@ -17,9 +17,9 @@ task main()
 		displayCenteredBigTextLine(1,t1);
 
 		error = col1 - target;
-		targetSpeed = error * multiPlier;
+		targetSpeed = error * multiplier;
 
-		setMotorSync(motorA, motorB, targetSpeed, 40);
+		setMotorSync(motorA, motorB, targetSpeed, 50);
 
 
 	}
