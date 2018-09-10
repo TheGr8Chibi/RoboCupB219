@@ -30,6 +30,7 @@ void lineFollower(int target, float multiplier){
 
 //Follow the line until black marker
 void lfToBlack(int threshold){
+	//Linefollow intil it reads black
 	while(getColorReflected(S2) > threshold){
 		//Values for following the yellow lines
 		lineFollower(40, 0.7);
@@ -41,11 +42,8 @@ void turnDeg(int deg){
 	resetGyro(S3);
 	int meas = getGyroHeading(S3);
 	while( meas < deg){
-
+		//Turn the car(Speed it up later)
 		setMotorSync(motorA, motorB, 100, 5);
-		string t1;
-		sprintf(t1,"Turn: %d", meas);
-		displayCenteredBigTextLine(1,t1);
 		meas = getGyroHeading(S3);
 	}
 	stopMotors();
