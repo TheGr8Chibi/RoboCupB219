@@ -46,16 +46,19 @@ task main()
 
 	//Stop 4 (Bottle)
 	//Drive to bottle
-	while(getUSDistance(S1) > 15){
+	while(getUSDistance(S1) > 7.5){
 		lineFollower(0.7, true);
 	}
 	//Close arm
-	//XXXXXXXXXXX
+	closeArm();
+
 	lfToBlack(blackLine, right,0.0);
+
 	//Open arm
-	//XXXXXXXXXX
+	openArm();
+
 	//Close arm
-	//XXXXXXXXX
+	closeArm();
 
 	//Stop 5
 	turnDeg(-150);
@@ -133,4 +136,14 @@ void JumpLine(){
 	setMotorSync(motorA, motorB, 0, 40);
 	wait1Msec(300);
 	stopMotors();
+}
+
+void closeArm(){
+setMotorTarget(motorC,1000,40);
+wait1Msec(3000);
+}
+
+void openArm(){
+	setMotorTarget(motorC,-500,40);
+wait1Msec(3000);
 }
