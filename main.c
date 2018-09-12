@@ -10,12 +10,14 @@ bool right = true;
 bool left = false;
 
 
-void lineFollower(float multiplier,  bool side);
+void lineFollower(float multiplier,  bool side, int speed);
 void stopMotors();
 void lfToBlack(int threshold, bool side);
-void lfToBlack(int threshold, bool side, int multiplier);
+
 void turnDeg(int deg);
 void JumpLine();
+void openArm();
+void closeArm();
 
 //Main program
 task main()
@@ -39,37 +41,51 @@ task main()
 	turnDeg(-10);
 
 	//Stop 3
+
 	lfToBlack(blackLine, right);
+	JumpLine();JumpLine();JumpLine();
+	wait1Msec(200);
 
-	turnDeg(25);
-	JumpLine();
+	setMotorTarget(motorB, 100, -40);
+wait1Msec(600);
 
+	//JumpLine();
+	//turnDeg(10);
 	//Stop 4 (Bottle)
 	//Drive to bottle
+
 	while(getUSDistance(S1) > 7.5){
-		lineFollower(0.7, true);
+		lineFollower(0.7, false,20);
 	}
+	setMotorSync(motorA,motorB,0,0);
 	//Close arm
 	closeArm();
 
-	lfToBlack(blackLine, right,0.0);
+	JumpLine();JumpLine();JumpLine();JumpLine();
 
 	//Open arm
 	openArm();
-
+	wait1Msec(3000);
+	while(getUSDistance(S1) > 7.5){
+		setMotorSync(motorA,motorB,0,20);
+	}
+	stopMotors();
 	//Close arm
 	closeArm();
 
 	//Stop 5
-	turnDeg(-150);
+	//turnDeg(-150);
+	setMotorTarget(motorB, 1000, 40);
+wait1Msec(1000);
+	JumpLine();JumpLine();JumpLine();JumpLine();JumpLine();
 
 	//Drive to line
 	setMotorSync(motorA, motorB, 0, 40);
 	while(getColorReflected(S2) > 90){
-		wait1Msec(50);
+		wait1Msec(10);
 	}
 	stopMotors();
-	turnDeg(20);
+
 	lfToBlack(blackLine, right);
 
 	//Stop 6 (Efter vippe)
@@ -83,7 +99,20 @@ task main()
 
 //FUNCTIONS ----------------------------------------------------------------------------------------------------------------------------------------
 //Line following, if side true go on right
-void lineFollower(float multiplier, bool side){
+
+
+
+
+void lfToBlack(int threshold, bool side){
+	//Linefollow intil it reads black
+	while(getColorReflected(S2) > threshold){
+		//Values for following the yellow lines
+		lineFollower(0.7, side,40);
+	}
+	stopMotors();
+}
+
+void lineFollower(float multiplier, bool side, int speed){
 	string t1;
 	int col1 = getColorReflected(S2);
 	sprintf(t1,"farve: %d", col1);
@@ -92,25 +121,14 @@ void lineFollower(float multiplier, bool side){
 	int error = (lineFollowTarget - col1) * (side ? -1: 1);
 	float difSpeed = error * multiplier;
 
-	setMotorSync(motorA, motorB, difSpeed, 40);
+	setMotorSync(motorA, motorB, difSpeed, speed);
 }
 
-void lfToBlack(int threshold, bool side){
-	lfToBlack(threshold, side, 0.7);
-}
-
-//Follow the line until black marker
-void lfToBlack(int threshold, bool side, int multiplier){
-	//Linefollow intil it reads black
-	while(getColorReflected(S2) > threshold){
-		//Values for following the yellow lines
-		lineFollower(multiplier, side);
-	}
-	stopMotors();
-}
 
 void turnDeg(int deg){
+	wait1Msec(1000);
 	resetGyro(S3);
+	wait1Msec(1000);
 	int meas = getGyroHeading(S3);
 	int error = meas - deg;
 	while( error > 1 || error < -1 ){
@@ -134,16 +152,16 @@ void stopMotors(){
 //Drive over black line
 void JumpLine(){
 	setMotorSync(motorA, motorB, 0, 40);
-	wait1Msec(300);
+	wait1Msec(200);
 	stopMotors();
 }
 
 void closeArm(){
-setMotorTarget(motorC,1000,40);
-wait1Msec(3000);
+setMotorTarget(motorC,2000,40);
+wait1Msec(2800);
 }
 
 void openArm(){
-	setMotorTarget(motorC,-500,40);
-wait1Msec(3000);
+	setMotorTarget(motorC,-100,40);
+wait1Msec(1300);
 }
