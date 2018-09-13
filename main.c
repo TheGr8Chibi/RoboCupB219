@@ -46,8 +46,9 @@ task main()
 	JumpLine(3);
 	wait1Msec(200);
 
-	setMotorTarget(motorB, 100, -40);
-	wait1Msec(600);
+	turnDeg(90);
+	//setMotorTarget(motorB, 100, -40);
+	//wait1Msec(600);
 
 	//JumpLine();
 	//turnDeg(10);
@@ -55,9 +56,10 @@ task main()
 	//Drive to bottle
 
 	while(getUSDistance(S1) > 7.5){
-		lineFollower(0.7, false,20);
+		lineFollower(0.7, left,20);
 	}
-	setMotorSync(motorA,motorB,0,0);
+	stopMotors();
+
 	//Close arm
 	closeArm();
 
@@ -74,9 +76,9 @@ task main()
 	closeArm();
 
 	//Stop 5
-	//turnDeg(-150);
-	setMotorTarget(motorB, 1000, 40);
-	wait1Msec(1000);
+	turnDeg(150);
+	//setMotorTarget(motorB, 1000, 40);
+	//wait1Msec(1000);
 	JumpLine(5);
 
 	//Drive to line
