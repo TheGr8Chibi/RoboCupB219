@@ -23,7 +23,7 @@ void lfToBlack(int threshold, bool side){
 	//Linefollow intil it reads black
 	while(getColorReflected(S2) > threshold){
 		//Values for following the yellow lines
-		lineFollower(0.7, side,40);
+		lineFollower(0.8, side,40);
 	}
 	stopMotors();
 }
@@ -56,9 +56,11 @@ void JumpLine(int times){
 void closeArm(){
 	setMotorTarget(motorC,2000,40);
 	wait1Msec(2800);
+	stopMotors();
 }
 
 void openArm(){
-	setMotorTarget(motorC,-100,40);
-	wait1Msec(1300);
+	setMotorTarget(motorC,-2000,40);
+	wait1Msec(300);
+	stopMotors();
 }

@@ -6,16 +6,16 @@ void stage1(){
 
 	//Skift spor
 	turnDeg(-30);
-	JumpLine(1);
+	JumpLine(2);
 	lfToBlack(55, left);
-	turnDeg(30);
+	turnDeg(10);
 
 	//Stop 2
 	lfToBlack(blackLine, left);
 
 	//Skift spor
 	turnDeg(30);
-	JumpLine(1);
+	JumpLine(2);
 	lfToBlack(55, left);
 	turnDeg(-10);
 }
@@ -25,17 +25,23 @@ void Stage2(){
 	//Stop 3
 	lfToBlack(blackLine, right);
 	JumpLine(3);
-	wait1Msec(200);
+	wait1Msec(2000);
 
-	turnDeg(90);
+	//turnDeg(90);
 
+	setMotorTarget(motorB, 100, -40);
+
+	wait1Msec(600);
 	//Stop 4 (Bottle)
 	//Drive to bottle
-	while(getUSDistance(S1) > 7.5){
-		lineFollower(0.7, left,20);
+	int oldlineFollowTarget = lineFollowTarget;
+	lineFollowTarget = 50;
+
+	while(getUSDistance(S1) > 9){
+		lineFollower(0.7, left,15);
 	}
 	stopMotors();
-
+	lineFollowTarget = oldlineFollowTarget;
 	//Close arm
 	closeArm();
 
@@ -45,8 +51,8 @@ void Stage2(){
 	openArm();
 	wait1Msec(3000);
 
-	while(getUSDistance(S1) > 7.5){
-		setMotorSync(motorA,motorB,0,15);
+	while(getUSDistance(S1) > 9){
+		setMotorSync(motorA,motorB,0,10);
 	}
 
 	stopMotors();
@@ -57,21 +63,50 @@ void Stage2(){
 
 void Stage3(){
 	//Stop 5
-	turnDeg(150);
-	//setMotorTarget(motorB, 1000, 40);
-	//wait1Msec(1000);
-	JumpLine(5);
+//	turnDeg(160);
+setMotorSync(motorA, motorB,0,-40);
+wait1Msec(2000);
+	setMotorTarget(motorB, 1000, 40);
+	wait1Msec(600);
+	//JumpLine(5);
 
 	//Drive to line
-	setMotorSync(motorA, motorB, 0, 40);
-	while(getColorReflected(S2) > white){
-		wait1Msec(10);
-	}
+	//setMotorSync(motorA, motorB, 0, 40);
+	//while(getColorReflected(S2) > white){
+		//wait1Msec(10);
+	//}
 	stopMotors();
 
 	lfToBlack(blackLine, right);
 
 	//Stop 6 (Efter vippe)
-	JumpLine(1);
+	JumpLine(2);
 	lfToBlack(blackLine, right);
+}
+
+void Stage4(){
+
+
+lfToBlack(blackLine, right);
+stopMotors();
+wait1Msec(1000);
+for(int a = 0; a < 5000; a++){
+	lineFollower(0.7, right, 40);
+}
+stopMotors();
+
+setMotorTarget(motorB, 1000, 40);
+	wait1Msec(300);
+	JumpLine(3);
+	setMotorTarget(motorB, 1000, -40);
+	wait1Msec(300);
+
+	lfToBlack(blackLine,right);
+}
+
+void Stage5(){
+	turnDeg(90);
+
+	lfToBlack(blackLine, left);
+
 }
