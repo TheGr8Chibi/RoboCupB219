@@ -21,7 +21,8 @@ task main()
 	//Track section
 	//stage1();
 
-	//Stop 3
+	//Stop 3-------------------------------------
+	//stage2();
 
 	lfToBlack(blackLine, right);
 	JumpLine(3);
@@ -56,7 +57,8 @@ task main()
 	//Close arm
 	closeArm();
 
-	//Stop 5
+	//Stop 5------------------------------------------
+	//stage3();
 	turnDeg(150);
 	//setMotorTarget(motorB, 1000, 40);
 	//wait1Msec(1000);
@@ -74,6 +76,6 @@ task main()
 	//Stop 6 (Efter vippe)
 	JumpLine(1);
 	lfToBlack(blackLine, right);
-
+	//---------------------------------------------------
 
 }
