@@ -30,7 +30,7 @@ void Stage2(){
 	//turnDeg(90);
 
 	setMotorTarget(motorB, 100, -40);
-	wait1Msec(600);
+	wait1Msec(700);
 	//Stop 4 (Bottle)
 	//Drive to bottle
 	int oldlineFollowTarget = lineFollowTarget;
@@ -50,7 +50,7 @@ void Stage2(){
 	openArm();
 	wait1Msec(3000);
 
-	while(getUSDistance(S1) > 9){
+	while(getUSDistance(S1) > 8){
 		setMotorSync(motorA,motorB,0,10);
 	}
 
@@ -62,11 +62,11 @@ void Stage2(){
 
 void Stage3(){
 	//Stop 5
+
 	//	turnDeg(160);
 	setMotorSync(motorA, motorB,0,-40);
-	wait1Msec(2000);
 	setMotorTarget(motorB, 1000, 40);
-	wait1Msec(600);
+	wait1Msec(800);
 	//JumpLine(5);
 
 	//Drive to line
@@ -94,11 +94,12 @@ void Stage4(){
 	}
 	stopMotors();
 
+
 	setMotorTarget(motorB, 1000, 40);
-	wait1Msec(300);
+	wait1Msec(400);
 	JumpLine(3);
 	setMotorTarget(motorB, 1000, -40);
-	wait1Msec(300);
+	wait1Msec(450);
 
 	lfToBlack(blackLine,right);
 }
