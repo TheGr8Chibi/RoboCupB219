@@ -1,6 +1,6 @@
 
 //First section with different tracks
-void stage1(){
+void Stage1(){
 	//Stop 1
 	lfToBlack(blackLine, left);
 
