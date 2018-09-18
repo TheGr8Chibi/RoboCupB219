@@ -6,7 +6,7 @@
 //Variables
 const int blackLine = 17;
 const int white = 90;
-int lineFollowTarget = 70;
+int lineFollowTarget = 65;
 const bool right = true;
 const bool left = false;
 
