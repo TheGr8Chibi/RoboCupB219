@@ -30,7 +30,6 @@ void Stage2(){
 	//turnDeg(90);
 
 	setMotorTarget(motorB, 100, -40);
-
 	wait1Msec(600);
 	//Stop 4 (Bottle)
 	//Drive to bottle
@@ -63,9 +62,9 @@ void Stage2(){
 
 void Stage3(){
 	//Stop 5
-//	turnDeg(160);
-setMotorSync(motorA, motorB,0,-40);
-wait1Msec(2000);
+	//	turnDeg(160);
+	setMotorSync(motorA, motorB,0,-40);
+	wait1Msec(2000);
 	setMotorTarget(motorB, 1000, 40);
 	wait1Msec(600);
 	//JumpLine(5);
@@ -73,7 +72,7 @@ wait1Msec(2000);
 	//Drive to line
 	//setMotorSync(motorA, motorB, 0, 40);
 	//while(getColorReflected(S2) > white){
-		//wait1Msec(10);
+	//wait1Msec(10);
 	//}
 	stopMotors();
 
@@ -87,15 +86,15 @@ wait1Msec(2000);
 void Stage4(){
 
 
-lfToBlack(blackLine, right);
-stopMotors();
-wait1Msec(1000);
-for(int a = 0; a < 5000; a++){
-	lineFollower(0.7, right, 40);
-}
-stopMotors();
+	lfToBlack(blackLine, right);
+	stopMotors();
+	wait1Msec(1000);
+	for(int a = 0; a < 5000; a++){
+		lineFollower(0.7, right, 40);
+	}
+	stopMotors();
 
-setMotorTarget(motorB, 1000, 40);
+	setMotorTarget(motorB, 1000, 40);
 	wait1Msec(300);
 	JumpLine(3);
 	setMotorTarget(motorB, 1000, -40);
@@ -105,8 +104,26 @@ setMotorTarget(motorB, 1000, 40);
 }
 
 void Stage5(){
-	turnDeg(90);
+	//turnDeg(90);
+	JumpLine(1);
+	setMotorTarget(motorB, 100, -40);
+	wait1Msec(600);
 
 	lfToBlack(blackLine, left);
 
+	JumpLine(7);
+
+	openArm();
+
+	setMotorSync(motorA,motorB,0,-40);
+	wait1Msec(1500);
+
+	stopMotors();
+
+	closeArm();
+
+	setMotorTarget(motorB, 100, 40);
+	wait1Msec(600);
+
+	lfToBlack(blackLine, right);
 }

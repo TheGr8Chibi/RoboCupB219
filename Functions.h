@@ -23,7 +23,7 @@ void lfToBlack(int threshold, bool side){
 	//Linefollow intil it reads black
 	while(getColorReflected(S2) > threshold){
 		//Values for following the yellow lines
-		lineFollower(0.8, side,40);
+		lineFollower(0.7, side,40);
 	}
 	stopMotors();
 }
