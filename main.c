@@ -16,9 +16,10 @@ const bool left = false;
 
 task main()
 {
-	wait1Msec(5000);
-	Stage1();
-	Stage2();
-	Stage3();
+	//wait1Msec(5000);
+	//Stage1();
+	//Stage2();
+	//Stage3();
 	Stage4();
+		Stage5();
 }

@@ -30,7 +30,7 @@ void Stage2(){
 	//turnDeg(90);
 
 	setMotorTarget(motorB, 100, -40);
-	wait1Msec(700);
+	wait1Msec(1000);
 	//Stop 4 (Bottle)
 	//Drive to bottle
 	int oldlineFollowTarget = lineFollowTarget;
@@ -43,8 +43,11 @@ void Stage2(){
 	lineFollowTarget = oldlineFollowTarget;
 	//Close arm
 	closeArm();
-
-	JumpLine(4);
+	JumpLine(3);
+	while(getColorReflected(S2) > 15){
+		setMotorSync(motorA, motorB, 0, 20);
+	}
+	stopMotors();
 
 	//Open arm
 	openArm();
@@ -62,9 +65,9 @@ void Stage2(){
 
 void Stage3(){
 	//Stop 5
-
 	//	turnDeg(160);
 	setMotorSync(motorA, motorB,0,-40);
+	wait1Msec(1700);
 	setMotorTarget(motorB, 1000, 40);
 	wait1Msec(800);
 	//JumpLine(5);
@@ -105,26 +108,31 @@ void Stage4(){
 }
 
 void Stage5(){
+	//Drej hen p ålinje
 	//turnDeg(90);
-	JumpLine(1);
-	setMotorTarget(motorB, 100, -40);
+	JumpLine(4);
+	setMotorTarget(motorB, 100, 40);
 	wait1Msec(600);
 
+	//Kør til flaske
 	lfToBlack(blackLine, left);
 
 	JumpLine(7);
 
 	openArm();
 
+	waitUntilMotorStop(motorC);
+
 	setMotorSync(motorA,motorB,0,-40);
-	wait1Msec(1500);
+	wait1Msec(4300);
 
 	stopMotors();
 
 	closeArm();
 
-	setMotorTarget(motorB, 100, 40);
-	wait1Msec(600);
+	setMotorTarget(motorB, 100, -40);
+	wait1Msec(700);
+	JumpLine(2);
 
 	lfToBlack(blackLine, right);
 }

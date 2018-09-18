@@ -4,6 +4,7 @@
 //Stop motors
 void stopMotors(){
 	setMotorSync(motorA, motorB, 0, 0);
+	setMotorSpeed(motorC,0);
 }
 
 
@@ -61,6 +62,6 @@ void closeArm(){
 
 void openArm(){
 	setMotorTarget(motorC,-2000,40);
-	wait1Msec(300);
+	wait1Msec(2800);
 	stopMotors();
 }
