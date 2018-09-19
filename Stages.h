@@ -136,3 +136,58 @@ void Stage5(){
 
 	lfToBlack(blackLine, right);
 }
+
+Stage6(){
+	//Turn away from bottle
+	setMotorTarget(motorB, 100, -40);
+	wait1Msec(600);
+
+	JumpLine(5);
+
+	//Turn back
+	setMotorTarget(motorA, 100, -40);
+	wait1Msec(600);
+
+	JumpLine(4);
+
+	//Turn towards line
+	setMotorTarget(motorB, 100, -40);
+	wait1Msec(600);
+
+	lfToBlack(blackline, right);
+}
+
+Stage7(){
+	JumpLine(4);
+
+	setMotorTarget(motorA, 100, 40);
+	wait1Msec(1000);
+
+	JumpLine(1);
+
+	setMotorTarget(motorB, 100, 40);
+	wait1Msec(1000);
+
+	JumpLine(2);
+
+	setMotorTarget(motorA, 100, 40);
+	wait1Msec(600);
+
+	JumpLine(1);
+
+	lfToBlack(blackline, left);
+
+}
+
+Stage8(){
+
+	setMotorTarget(motorA, 100, 40);
+	wait1Msec(1000);
+
+	JumpLine(1);
+
+	setMotorTarget(motorB, 100, 40);
+	wait1Msec(1000);
+
+	lfToBlack(blackline, left);
+}
