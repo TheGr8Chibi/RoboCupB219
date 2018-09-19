@@ -137,27 +137,35 @@ void Stage5(){
 	lfToBlack(blackLine, right);
 }
 
-Stage6(){
-	//Turn away from bottle
-	setMotorTarget(motorB, 100, -40);
-	wait1Msec(600);
+void Stage6(int r){
+	//SLET
+	//lfToBlack(blackline, right);
 
+
+	//Turn away from bottle
+	setMotorSpeed(motorB, 40*r);
+	wait1Msec(400);
+stopMotors();
 	JumpLine(5);
 
 	//Turn back
-	setMotorTarget(motorA, 100, -40);
-	wait1Msec(600);
 
-	JumpLine(4);
+	setMotorSpeed(motorA,  40*r);
+	wait1Msec(800);
+	stopMotors();
+
+
+	JumpLine(3);
 
 	//Turn towards line
-	setMotorTarget(motorB, 100, -40);
-	wait1Msec(600);
-
+	setMotorSpeed(motorB, 40*r);
+	wait1Msec(200);
+	stopMotors();
+wait1Msec(2000);
 	lfToBlack(blackline, right);
 }
 
-Stage7(){
+void Stage7(){
 	JumpLine(4);
 
 	setMotorTarget(motorA, 100, 40);
@@ -179,15 +187,7 @@ Stage7(){
 
 }
 
-Stage8(){
+void Stage8(){
 
-	setMotorTarget(motorA, 100, 40);
-	wait1Msec(1000);
-
-	JumpLine(1);
-
-	setMotorTarget(motorB, 100, 40);
-	wait1Msec(1000);
-
-	lfToBlack(blackline, left);
+	Stage6(-1);
 }
