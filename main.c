@@ -22,5 +22,6 @@ task main()
 	//Stage3();
 	//Stage4();
 	//Stage5();
-		//Stage6(1);
+		Stage6(1);
+
 }

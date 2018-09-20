@@ -151,17 +151,17 @@ stopMotors();
 	//Turn back
 
 	setMotorSpeed(motorA,  40*r);
-	wait1Msec(800);
+	wait1Msec(700);
 	stopMotors();
 
 
-	JumpLine(3);
+	JumpLine(4);
 
 	//Turn towards line
 	setMotorSpeed(motorB, 40*r);
 	wait1Msec(200);
 	stopMotors();
-wait1Msec(2000);
+
 	lfToBlack(blackline, right);
 }
 
