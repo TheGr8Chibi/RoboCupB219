@@ -5,19 +5,28 @@ void Stage1(){
 	lfToBlack(blackLine, left);
 
 	//Skift spor
-	turnDeg(-30);
+	setMotorSync(motorA, motorB, -100, 20);
+	wait1Msec(300);
+	stopMotors();
 	JumpLine(2);
 	lfToBlack(55, left);
-	turnDeg(10);
+
+	setMotorSync(motorA, motorB, 100, 20);
+	wait1Msec(200);
+	stopMotors();
 
 	//Stop 2
 	lfToBlack(blackLine, left);
 
 	//Skift spor
-	turnDeg(30);
+	setMotorSync(motorA, motorB, 100, 20);
+	wait1Msec(300);
+	stopMotors();
 	JumpLine(2);
 	lfToBlack(55, left);
-	turnDeg(-10);
+	setMotorSync(motorA, motorB, -100, 20);
+	wait1Msec(200);
+	stopMotors();
 }
 
 //Second section - pick up bottle
@@ -141,15 +150,15 @@ void Stage6(bool r){
 	JumpLine(1);
 
 	//Turn away from bottle
-	setMotorSpeed(r ? motorB : motorA, 40);
-	wait1Msec(r ? 500 : 500);
+	setMotorSpeed(r ? motorB : motorA, 20);
+	wait1Msec(r ? 1000 : 1000);
 	stopMotors();
 	JumpLine(7);
 
 	//Turn back
 
-	setMotorSpeed(r ? motorA : motorB,  40);
-	wait1Msec(900);
+	setMotorSpeed(r ? motorA : motorB,  30);
+	wait1Msec(r ? 1000 : 700);
 	stopMotors();
 
 	setMotorSync(motorA, motorB, 0, 20);
@@ -157,19 +166,24 @@ void Stage6(bool r){
 	if(r) {
 
 		stopMotors();
-
+		playTone(440, 30);
 		//Turn towards line
 		setMotorSpeed(r ? motorB : motorA, 40);
-		while(getColorReflected(S2) < white) {}
+		while(getColorReflected(S2) < white + 5) {}
 
 	}else {
-		while(getColorReflected(S2) < white) { }
+		while(getColorReflected(S2) < white + 5) { }
+
+		stopMotors();
+
 		//JumpLine(1);
 		//Turn towards line
+		playTone(440, 30);
 		setMotorSpeed(r ? motorB : motorA, 20);
 		while(getColorReflected(S2) > white) {}
 	}
 	stopMotors();
+	playTone(550, 30);
 	lfToBlack(blackline, r);
 }
 
@@ -177,8 +191,8 @@ void Stage7(){
 	JumpLine(8);
 
 	//Turn to wall
-	setMotorSync(motorA, motorB, 100, 40);
-	wait1Msec(200);
+	setMotorSync(motorA, motorB, 100, 20);
+	wait1Msec(350);
 	stopMotors();
 
 	//Drive closer
@@ -201,15 +215,19 @@ void Stage7(){
 
 	//Turn back
 	setMotorSync(motorA, motorB, -100, 40);
-	wait1Msec(500);
+	wait1Msec(520);
 	stopMotors();
 
 	setMotorSync(motorA, motorB, 0, 20);
 	while(getColorReflected(S2) > white) { }
-
-	setMotorSync(motorA, motorB, -100, 40);
-	while(getColorReflected(S2) < white) {}
 	stopMotors();
+	playTone(440, 30);
+
+	setMotorSync(motorA, motorB, -100, 20);
+	while(getColorReflected(S2) < white + 5) {}
+	stopMotors();
+
+	playTone(550, 30);
 
 	lfToBlack(blackline, right);
 
