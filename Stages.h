@@ -44,7 +44,7 @@ void Stage2(){
 	//Close arm
 	closeArm();
 	JumpLine(3);
-	while(getColorReflected(S2) > 15){
+	while(getColorReflected(S2) > blackLine){
 		setMotorSync(motorA, motorB, 0, 20);
 	}
 	stopMotors();
@@ -153,21 +153,21 @@ void Stage6(bool r){
 	stopMotors();
 
 	setMotorSync(motorA, motorB, 0, 20);
-	while(getColorReflected(S2) > 55) { }
+	while(getColorReflected(S2) > white) { }
 	if(r) {
 
 		stopMotors();
 
 		//Turn towards line
 		setMotorSpeed(r ? motorB : motorA, 40);
-		while(getColorReflected(S2) < 60) {}
+		while(getColorReflected(S2) < white) {}
 
 	}else {
-		while(getColorReflected(S2) < 60) { }
+		while(getColorReflected(S2) < white) { }
 		//JumpLine(1);
 		//Turn towards line
 		setMotorSpeed(r ? motorB : motorA, 20);
-		while(getColorReflected(S2) > 60) {}
+		while(getColorReflected(S2) > white) {}
 	}
 	stopMotors();
 	lfToBlack(blackline, r);
@@ -205,10 +205,10 @@ void Stage7(){
 	stopMotors();
 
 	setMotorSync(motorA, motorB, 0, 20);
-	while(getColorReflected(S2) > 55) { }
+	while(getColorReflected(S2) > white) { }
 
 	setMotorSync(motorA, motorB, -100, 40);
-	while(getColorReflected(S2) < 55) {}
+	while(getColorReflected(S2) < white) {}
 	stopMotors();
 
 	lfToBlack(blackline, right);
