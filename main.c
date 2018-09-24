@@ -22,6 +22,9 @@ task main()
 	//Stage3();
 	//Stage4();
 	//Stage5();
-		Stage6(1);
+	lfToBlack(15, right);
+	Stage6(true);
+	Stage7();
+	Stage6(false);
 
 }

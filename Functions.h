@@ -10,13 +10,17 @@ void stopMotors(){
 
 void lineFollower(float multiplier, bool side, int speed){
 	string t1;
+	//Read from sensor
 	int col1 = getColorReflected(S2);
 	sprintf(t1,"farve: %d", col1);
 	displayCenteredBigTextLine(1,t1);
 
+	//Calculate error, and add side multiplier(-1 og 1)
 	int error = (lineFollowTarget - col1) * (side ? -1: 1);
+	//Multiply with multiplier
 	float difSpeed = error * multiplier;
 
+	//Set motors
 	setMotorSync(motorA, motorB, difSpeed, speed);
 }
 
