@@ -5,7 +5,7 @@
 
 //Variables
 const int blackLine = 17;
-const int white = 90;
+const int white = 50;
 int lineFollowTarget = 65;
 const bool right = true;
 const bool left = false;
@@ -16,13 +16,12 @@ const bool left = false;
 
 task main()
 {
-	//wait1Msec(5000);
 	//Stage1();
 	//Stage2();
 	//Stage3();
 	//Stage4();
-	//Stage5();
-	lfToBlack(15, right);
+
+	Stage5();
 	Stage6(true);
 	Stage7();
 	Stage6(false);
