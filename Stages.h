@@ -172,7 +172,7 @@ void Stage6(bool r){
 		setMotorSpeed(r ? motorB : motorA, 40);
 		while(getColorReflected(S2) < white + 5) {}
 
-	}else {
+		}else {
 		while(getColorReflected(S2) < white + 5) { }
 
 		stopMotors();
@@ -238,4 +238,33 @@ void Stage7(){
 void Stage8(){
 
 	Stage6(-1);
+}
+
+void Stage9(){
+	JumpLine(2);
+
+	setMotorSpeed(motorB, 100, 40);
+	wait1Msec(600);
+	stopMotors();
+
+	JumpLine(1);
+
+	setMotorSpeed(motorA, 100, 40);
+	wait1Msec(600);
+	stopMotors();
+
+	int counter = 0;
+	while(getColorReflected(S2)<80){
+		lineFollower(0.8,left,40);
+		counter++;
+	}
+
+
+//turn here
+
+	//Drive back
+	for(int a = 0; a < counter; a++){
+		lineFollower(0.8,left,40);
+	}
+
 }
