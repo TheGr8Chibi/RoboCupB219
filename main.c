@@ -6,7 +6,7 @@
 //Variables
 const int blackLine = 17;
 const int white = 50;
-int lineFollowTarget = 65;
+int lineFollowTarget = 67;
 const bool right = true;
 const bool left = false;
 
@@ -16,10 +16,10 @@ const bool left = false;
 
 task main()
 {
-	//Stage1();
-	//Stage2();
-	//Stage3();
-	//Stage4();
+	Stage1();
+	Stage2();
+	Stage3();
+	Stage4();
 
 	Stage5();
 	Stage6(true);

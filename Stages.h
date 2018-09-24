@@ -38,7 +38,7 @@ void Stage2(){
 
 	//turnDeg(90);
 
-	setMotorTarget(motorB, 100, -40);
+	setMotorTarget(motorB, 100, -30);
 	wait1Msec(1000);
 	//Stop 4 (Bottle)
 	//Drive to bottle
@@ -137,10 +137,10 @@ void Stage5(){
 
 	stopMotors();
 
-	setMotorTarget(motorB, 100, -40);
+	setMotorSync(motorA, motorB, 100, -20);
 	wait1Msec(700);
 	JumpLine(2);
-
+	closeArm();
 	lfToBlack(blackLine, right);
 }
 
@@ -190,11 +190,11 @@ void Stage6(bool r){
 }
 
 void Stage7(){
-	JumpLine(8);
+	JumpLine(9);
 
 	//Turn to wall
-	setMotorSync(motorA, motorB, 100, 20);
-	wait1Msec(350);
+	setMotorSync(motorA, motorB, 100, 10);
+	wait1Msec(540);
 	stopMotors();
 
 	//Drive closer
