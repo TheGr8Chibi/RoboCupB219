@@ -150,16 +150,20 @@ void Stage6(bool r){
 	JumpLine(1);
 
 	//Turn away from bottle
-	setMotorSpeed(r ? motorB : motorA, 20);
-	wait1Msec(r ? 1000 : 1000);
-	stopMotors();
+	setMotorTarget(r ? motorB : motorA, 200, 20);
+	//wait1Msec(r ? 1000 : 1000);
+	//stopMotors();
+
+	waitUntilMotorStop(r ? motorB : motorA);
+
 	JumpLine(7);
 
 	//Turn back
 
-	setMotorSpeed(r ? motorA : motorB,  30);
-	wait1Msec(r ? 1000 : 700);
-	stopMotors();
+	setMotorTarget(r ? motorA : motorB, r ? 400 : 500,  -30);
+	//wait1Msec(r ? 1000 : 700);
+	//stopMotors();
+	waitUntilMotorStop(r ? motorA : motorB);
 
 	setMotorSync(motorA, motorB, 0, 20);
 	while(getColorReflected(S2) > white) { }
@@ -193,9 +197,11 @@ void Stage7(){
 	JumpLine(9);
 
 	//Turn to wall
-	setMotorSync(motorA, motorB, 100, 10);
-	wait1Msec(540);
-	stopMotors();
+	setMotorSyncEncoder(motorA, motorB, 100, 80, 10);
+	//wait1Msec(540);
+	//stopMotors();
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
 
 	//Drive closer
 	while ( getUSDistance(S1) > 15 ) {
@@ -204,9 +210,11 @@ void Stage7(){
 	stopMotors();
 
 	//Turn back to exit
-	setMotorSync(motorA, motorB, 100, 40);
-	wait1Msec(510);
-	stopMotors();
+	setMotorSyncEncoder(motorA, motorB, 100, 180, 40);
+	//wait1Msec(510);
+	//stopMotors();
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
 
 	//Drive backwards out
 	setMotorSync(motorA, motorB, 0, -40);
@@ -216,9 +224,11 @@ void Stage7(){
 
 
 	//Turn back
-	setMotorSync(motorA, motorB, -100, 40);
-	wait1Msec(520);
-	stopMotors();
+	setMotorSyncEncoder(motorA, motorB, -100, 200,  40);
+	//wait1Msec(520);
+	//stopMotors();
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
 
 	setMotorSync(motorA, motorB, 0, 20);
 	while(getColorReflected(S2) > white) { }

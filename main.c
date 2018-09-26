@@ -24,14 +24,14 @@ task sound(){
 task main()
 {
 	startTask(sound);
-	/*Stage1();
-	Stage2();
-	Stage3();
-	Stage4();
+	//Stage1();
+	//Stage2();
+	//Stage3();
+	//Stage4();
 
-	Stage5();
+	//Stage5();
 	Stage6(true);
 	Stage7();
 	Stage6(false);
-	*/
+
 }
