@@ -150,16 +150,31 @@ void Stage6(bool r){
 	JumpLine(1);
 
 	//Turn away from bottle
-	setMotorSpeed(r ? motorB : motorA, 20);
-	wait1Msec(r ? 1000 : 1000);
-	stopMotors();
+	if(r){
+		setMotorTarget(motorB, 200, 20);
+		//wait1Msec(r ? 1000 : 1000);
+		//stopMotors();
+
+		waitUntilMotorStop(r ? motorB : motorA);
+		}else{
+		setMotorSpeed(motorA, 20);
+		wait1Msec( 1000);
+		stopMotors();
+	}
+
 	JumpLine(7);
 
 	//Turn back
-
-	setMotorSpeed(r ? motorA : motorB,  30);
-	wait1Msec(r ? 1000 : 700);
-	stopMotors();
+	if(r) {
+		setMotorTarget(r ? motorA : motorB, r ? 400 : 500,  -30);
+		//wait1Msec(r ? 1000 : 700);
+		//stopMotors();
+		waitUntilMotorStop(r ? motorA : motorB);
+		} else{
+		setMotorSpeed(motorB, 30);
+		wait1Msec(700);
+		stopMotors();
+	}
 
 	setMotorSync(motorA, motorB, 0, 20);
 	while(getColorReflected(S2) > white) { }
@@ -193,9 +208,11 @@ void Stage7(){
 	JumpLine(9);
 
 	//Turn to wall
-	setMotorSync(motorA, motorB, 100, 10);
-	wait1Msec(540);
-	stopMotors();
+	setMotorSyncEncoder(motorA, motorB, 100, 80, 10);
+	//wait1Msec(540);
+	//stopMotors();
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
 
 	//Drive closer
 	while ( getUSDistance(S1) > 15 ) {
@@ -204,9 +221,11 @@ void Stage7(){
 	stopMotors();
 
 	//Turn back to exit
-	setMotorSync(motorA, motorB, 100, 40);
-	wait1Msec(510);
-	stopMotors();
+	setMotorSyncEncoder(motorA, motorB, 100, 180, 40);
+	//wait1Msec(510);
+	//stopMotors();
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
 
 	//Drive backwards out
 	setMotorSync(motorA, motorB, 0, -40);
@@ -216,9 +235,11 @@ void Stage7(){
 
 
 	//Turn back
-	setMotorSync(motorA, motorB, -100, 40);
-	wait1Msec(520);
-	stopMotors();
+	setMotorSyncEncoder(motorA, motorB, -100, 150,  20);
+	//wait1Msec(520);
+	//stopMotors();
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
 
 	setMotorSync(motorA, motorB, 0, 20);
 	while(getColorReflected(S2) > white) { }
@@ -254,17 +275,28 @@ void Stage9(){
 	stopMotors();
 
 	int counter = 0;
-	while(getColorReflected(S2)<80){
+	while(getUSDistance(S1)>10){
 		lineFollower(0.8,left,40);
 		counter++;
 	}
+	stopMotors();
 
+	setMotorSync(motorA, motorB, 0, -20);
+	wait1Msec(700);
 
-//turn here
+	playTone(440, 15);
+
+	setMotorSyncEncoder(motorA, motorB, 100, 300, 20);
+	waitUntilMotorStop(motorA);
+	waitUntilMotorStop(motorB);
+	stopMotors();
 
 	//Drive back
-	for(int a = 0; a < counter; a++){
+	for(int a = 0; a < counter/2; a++){
 		lineFollower(0.8,left,40);
 	}
+	playTone(550, 15);
+
+
 
 }

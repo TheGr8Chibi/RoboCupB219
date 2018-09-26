@@ -17,14 +17,14 @@ const bool left = false;
 
 task sound(){
 	while(true){
-	play1();
-}
+		play1();
+	}
 }
 
 task main()
 {
-	startTask(sound);
-	/*Stage1();
+//	startTask(sound);
+	Stage1();
 	Stage2();
 	Stage3();
 	Stage4();
@@ -33,5 +33,9 @@ task main()
 	Stage6(true);
 	Stage7();
 	Stage6(false);
-*/
+	Stage9();
+
+	setMotorSync(motorA, motorB, 100, 100);
+	while(true) {}
+
 }
