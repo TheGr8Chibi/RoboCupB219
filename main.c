@@ -17,8 +17,8 @@ const bool left = false;
 
 task sound(){
 	while(true){
-	play1();
-}
+		play1();
+	}
 }
 
 task main()
@@ -33,5 +33,5 @@ task main()
 	Stage6(true);
 	Stage7();
 	Stage6(false);
-*/
+	*/
 }
