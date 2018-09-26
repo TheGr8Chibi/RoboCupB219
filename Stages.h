@@ -150,7 +150,7 @@ void Stage6(bool r){
 	JumpLine(1);
 
 	//Turn away from bottle
-	setMotorTarget(r ? motorB : motorA, 200, 20);
+	setMotorTarget(r ? motorB : motorA, r ? 200 : 10, 20);
 	//wait1Msec(r ? 1000 : 1000);
 	//stopMotors();
 
