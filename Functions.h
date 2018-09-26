@@ -69,64 +69,64 @@ void openArm(){
 	wait1Msec(2800);
 	stopMotors();
 }
-								/*C,D,E,F,G,A,B*/
+/*C,D,E,F,G,A,B*/
 float notes[] = {523.25,587.33,659.25,698.46,783.99,880,987.77};
-						/*Db,D#,F,F#,G#,A#,C*/
+/*Db,D#,F,F#,G#,A#,C*/
 float n[] = { 277.18*2, 311.13*2, 349.23*2, 369.99*2, 415.30*2, 466.16*2, 523.25*2};
 float time[] = {75, 37,19,9};
 void play(bool run){
-int t = 15;
+	int t = 15;
 	while(run = true){
 		int rnd = random(4);
 		t = 10 + random(20);
-	playTone(notes[rnd],15);
-	//	delay(t*10);
+		playTone(notes[rnd],15);
+		//	delay(t*10);
 	}
 
 }
 
 void play1(){
 
-const int fn = 400;
-const int hn = 200;
-const int qn = 100;
-const int f5 = 698;
-const int c6 = 1047;
-const int b5 = 988;
-const int gh5 = 831;
-const int ch6 = 1109;
-const int dh6 = 1245;
+	const int fn = 400;
+	const int hn = 200;
+	const int qn = 100;
+	const int f5 = 698;
+	const int c6 = 1047;
+	const int b5 = 988;
+	const int gh5 = 831;
+	const int ch6 = 1109;
+	const int dh6 = 1245;
 
-int song[] = {
-  f5,fn + hn,
-  c6,hn,
-  b5,qn,
-  c6,qn,
-  b5,qn,
-  c6,qn,
-  b5,hn,
-  c6,hn,
-  gh5,fn,
-  f5,fn + hn,
-  f5,hn,
-  gh5,hn,
-  c6,hn,
-  ch6,fn,
-  gh5,fn,
-  ch6,fn,
-  dh6,fn,
-  c6,hn,
-  ch6,hn,
-  c6,hn,
-  ch6,hn,
-  c6,fn,
-  dh6, fn};
-
+	int song[] = {
+		f5,fn + hn,
+		c6,hn,
+		b5,qn,
+		c6,qn,
+		b5,qn,
+		c6,qn,
+		b5,hn,
+		c6,hn,
+		gh5,fn,
+		f5,fn + hn,
+		f5,hn,
+		gh5,hn,
+		c6,hn,
+		ch6,fn,
+		gh5,fn,
+		ch6,fn,
+		dh6,fn,
+		c6,hn,
+		ch6,hn,
+		c6,hn,
+		ch6,hn,
+		c6,fn};
 
 
-for (int i = 0; i < (sizeof(song)/sizeof(int)); i = i + 2){
-  playTone(song[i],song[i + 1]/10);
-  wait1Msec(song[i + 1]);
 
-}
+	for (int i = 0; i < (sizeof(song)/sizeof(int)); i = i + 2){
+		playTone(song[i],song[i + 1]/10);
+		wait1Msec(song[i + 1]);
+
+	}
+	wait1Msec(fn);
 }
