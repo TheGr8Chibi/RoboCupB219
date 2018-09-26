@@ -243,13 +243,13 @@ void Stage8(){
 void Stage9(){
 	JumpLine(2);
 
-	setMotorSpeed(motorB, 100, 40);
+	setMotorSpeed(motorB,40);
 	wait1Msec(600);
 	stopMotors();
 
 	JumpLine(1);
 
-	setMotorSpeed(motorA, 100, 40);
+	setMotorSpeed(motorA,40);
 	wait1Msec(600);
 	stopMotors();
 

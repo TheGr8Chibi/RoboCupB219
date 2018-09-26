@@ -14,9 +14,17 @@ const bool left = false;
 #include "Stages.h"
 
 
+
+task sound(){
+	while(true){
+	play1();
+}
+}
+
 task main()
 {
-	Stage1();
+	startTask(sound);
+	/*Stage1();
 	Stage2();
 	Stage3();
 	Stage4();
@@ -25,5 +33,5 @@ task main()
 	Stage6(true);
 	Stage7();
 	Stage6(false);
-
+*/
 }
