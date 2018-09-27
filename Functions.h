@@ -85,48 +85,52 @@ void play(bool run){
 
 }
 
+//Quarternote fn
+const int qn = 400;
+//Eighthnote hn
+const int en = 200;
+//1/16 qn
+const int sn = 100;
+const int f5 = 698;
+const int c6 = 1047;
+const int b5 = 988;
+const int gh5 = 831;
+const int ch6 = 1109;
+const int dh6 = 1245;
+
+int song[] = {
+	f5,qn + en,
+	c6,en,
+	b5,sn,
+	c6,sn,
+	b5,sn,
+	c6,sn,
+	b5,en,
+	c6,en,
+	gh5,qn,
+	f5,qn + en,
+	f5,en,
+	gh5,en,
+	c6,en,
+	ch6,qn,
+	gh5,qn,
+	ch6,qn,
+	dh6,qn,
+	c6,en,
+	ch6,en,
+	c6,en,
+	ch6,en,
+	c6,qn,};
+
+
 void play1(){
 
-	const int fn = 400;
-	const int hn = 200;
-	const int qn = 100;
-	const int f5 = 698;
-	const int c6 = 1047;
-	const int b5 = 988;
-	const int gh5 = 831;
-	const int ch6 = 1109;
-	const int dh6 = 1245;
+	int numNotes = sizeof(song)/sizeof(int);
 
-	int song[] = {
-		f5,fn + hn,
-		c6,hn,
-		b5,qn,
-		c6,qn,
-		b5,qn,
-		c6,qn,
-		b5,hn,
-		c6,hn,
-		gh5,fn,
-		f5,fn + hn,
-		f5,hn,
-		gh5,hn,
-		c6,hn,
-		ch6,fn,
-		gh5,fn,
-		ch6,fn,
-		dh6,fn,
-		c6,hn,
-		ch6,hn,
-		c6,hn,
-		ch6,hn,
-		c6,fn,};
-
-
-
-	for (int i = 0; i < (sizeof(song)/sizeof(int)); i = i + 2){
+	for (int i = 0; i < numNotes ; i += 2){
 		playTone(song[i],song[i + 1]/10);
 		wait1Msec(song[i + 1]);
 
 	}
-	wait1Msec(fn);
+	wait1Msec(qn);
 }

@@ -144,9 +144,9 @@ void Stage5(){
 	lfToBlack(blackLine, right);
 }
 
+//If r is true, it is the first of the bottle stages.
 void Stage6(bool r){
-	//SLET
-	//lfToBlack(blackline, right);
+
 	JumpLine(1);
 
 	//Turn away from bottle
