@@ -25,14 +25,14 @@ void Stage1(){
 	JumpLine(2);
 	lfToBlack(55, left);
 	setMotorSync(motorA, motorB, -100, 20);
-	wait1Msec(200);
+	wait1Msec(250);
 	stopMotors();
 }
 
 //Second section - pick up bottle
 void Stage2(){
 	//Stop 3
-	lfToBlack(blackLine, right);
+	lfToBlackSpeed(blackLine, right, 30);
 	JumpLine(3);
 	wait1Msec(2000);
 
@@ -45,7 +45,7 @@ void Stage2(){
 	int oldlineFollowTarget = lineFollowTarget;
 	lineFollowTarget = 50;
 
-	while(getUSDistance(S1) > 9){
+	while(getUSDistance(S1) > 5.5){
 		lineFollower(0.7, left,15);
 	}
 	stopMotors();
@@ -62,7 +62,7 @@ void Stage2(){
 	openArm();
 	wait1Msec(3000);
 
-	while(getUSDistance(S1) > 8){
+	while(getUSDistance(S1) > 6){
 		setMotorSync(motorA,motorB,0,10);
 	}
 
@@ -88,11 +88,11 @@ void Stage3(){
 	//}
 	stopMotors();
 
-	lfToBlack(blackLine, right);
+	lfToBlackSpeed(blackLine, right, 30);
 
 	//Stop 6 (Efter vippe)
 	JumpLine(2);
-	lfToBlack(blackLine, right);
+	lfToBlackSpeed(blackLine, right, 30);
 }
 
 void Stage4(){
@@ -113,7 +113,7 @@ void Stage4(){
 	setMotorTarget(motorB, 1000, -40);
 	wait1Msec(450);
 
-	lfToBlack(blackLine,right);
+	lfToBlackSpeed(blackLine,right, 30);
 }
 
 void Stage5(){
@@ -151,7 +151,7 @@ void Stage6(bool r){
 
 	//Turn away from bottle
 	if(r){
-		setMotorTarget(motorB, 200, 20);
+		moveMotorTarget(motorB, 200, 20);
 		//wait1Msec(r ? 1000 : 1000);
 		//stopMotors();
 
@@ -165,16 +165,11 @@ void Stage6(bool r){
 	JumpLine(7);
 
 	//Turn back
-	if(r) {
-		setMotorTarget(r ? motorA : motorB, r ? 400 : 500,  -30);
-		//wait1Msec(r ? 1000 : 700);
-		//stopMotors();
-		waitUntilMotorStop(r ? motorA : motorB);
-		} else{
-		setMotorSpeed(motorB, 30);
-		wait1Msec(700);
-		stopMotors();
-	}
+	moveMotorTarget(r ? motorA : motorB, 340,  30);
+	//wait1Msec(r ? 1000 : 700);
+	//stopMotors();
+	waitUntilMotorStop(r ? motorA: motorB);
+
 
 	setMotorSync(motorA, motorB, 0, 20);
 	while(getColorReflected(S2) > white) { }
@@ -201,7 +196,7 @@ void Stage6(bool r){
 	stopMotors();
 
 	playTone(550, 30);
-	lfToBlack(blackline, r);
+	lfToBlackSpeed(blackline, r, 30);
 }
 
 void Stage7(){
@@ -221,7 +216,7 @@ void Stage7(){
 	stopMotors();
 
 	//Turn back to exit
-	setMotorSyncEncoder(motorA, motorB, 100, 180, 40);
+	setMotorSyncEncoder(motorA, motorB, 100, 190, 40);
 	//wait1Msec(510);
 	//stopMotors();
 	waitUntilMotorStop(motorA);
@@ -271,7 +266,7 @@ void Stage9(){
 	JumpLine(1);
 
 	setMotorSpeed(motorA,40);
-	wait1Msec(600);
+	wait1Msec(800);
 	stopMotors();
 
 	int counter = 0;
@@ -291,9 +286,10 @@ void Stage9(){
 	waitUntilMotorStop(motorB);
 	stopMotors();
 
+	counter -= 1500;
 	//Drive back
 	for(int a = 0; a < counter/2; a++){
-		lineFollower(0.8,left,40);
+		lineFollower(0.8,right,40);
 	}
 	playTone(550, 15);
 

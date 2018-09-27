@@ -24,13 +24,17 @@ void lineFollower(float multiplier, bool side, int speed){
 	setMotorSync(motorA, motorB, difSpeed, speed);
 }
 
-void lfToBlack(int threshold, bool side){
+void lfToBlackSpeed(int threshold, bool side, int speed){
 	//Linefollow intil it reads black
 	while(getColorReflected(S2) > threshold){
 		//Values for following the yellow lines
-		lineFollower(0.7, side,40);
+		lineFollower(0.7, side,speed);
 	}
 	stopMotors();
+}
+
+void lfToBlack(int threshold, bool side){
+	lfToBlackSpeed(threshold, side, 40);
 }
 
 void turnDeg(int deg){
@@ -66,7 +70,7 @@ void closeArm(){
 
 void openArm(){
 	setMotorTarget(motorC,-2000,40);
-	wait1Msec(2800);
+	wait1Msec(2700);
 	stopMotors();
 }
 /*C,D,E,F,G,A,B*/
@@ -128,6 +132,7 @@ void play1(){
 	int numNotes = sizeof(song)/sizeof(int);
 
 	for (int i = 0; i < numNotes ; i += 2){
+
 		playTone(song[i],song[i + 1]/10);
 		wait1Msec(song[i + 1]);
 
