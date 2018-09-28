@@ -88,11 +88,11 @@ void Stage3(){
 	//}
 	stopMotors();
 
-	lfToBlackSpeed(blackLine, right, 30);
+	lfToBlackSpeed(blackLine + 5, right, 30);
 
 	//Stop 6 (Efter vippe)
 	JumpLine(2);
-	lfToBlackSpeed(blackLine, right, 30);
+	lfToBlackSpeed(blackLine + 5, right, 30);
 }
 
 void Stage4(){
@@ -126,7 +126,7 @@ void Stage5(){
 	//Kør til flaske
 	lfToBlack(blackLine, left);
 
-	JumpLine(7);
+	JumpLine(8);
 
 	openArm();
 
@@ -140,7 +140,7 @@ void Stage5(){
 	setMotorSync(motorA, motorB, 100, -20);
 	wait1Msec(700);
 	JumpLine(2);
-	closeArm();
+	openArm();
 	lfToBlack(blackLine, right);
 }
 
