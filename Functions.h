@@ -1,5 +1,4 @@
 //FUNCTIONS
-//Line following, if side true go on right
 
 //Stop motors
 void stopMotors(){
@@ -7,11 +6,14 @@ void stopMotors(){
 	setMotorSpeed(motorC,0);
 }
 
-
+//Line following, if side true go on right
 void lineFollower(float multiplier, bool side, int speed){
+
 	string t1;
 	//Read from sensor
 	int col1 = getColorReflected(S2);
+	
+	//Print to screen
 	sprintf(t1,"farve: %d", col1);
 	displayCenteredBigTextLine(1,t1);
 
@@ -33,27 +35,10 @@ void lfToBlackSpeed(int threshold, bool side, int speed){
 	stopMotors();
 }
 
+//For backwardscompatability with other code
 void lfToBlack(int threshold, bool side){
 	lfToBlackSpeed(threshold, side, 40);
 }
-
-void turnDeg(int deg){
-	resetGyro(S3);
-	int meas = getGyroHeading(S3);
-	int error = meas - deg;
-	while( error != 0 ){
-		//Turn the car(Speed it up later)
-		setMotorSync(motorA, motorB, 100 * ( error < 0 ? 1 : -1 ), 20);
-		meas = getGyroHeading(S3);
-
-		string t1;
-		sprintf(t1,"farve: %d", error);
-		displayCenteredBigTextLine(1,t1);
-		error = meas - deg;
-	}
-	stopMotors();
-}
-
 
 //Drive over black line
 void JumpLine(int times){
@@ -62,31 +47,18 @@ void JumpLine(int times){
 	stopMotors();
 }
 
+//Close the arm
 void closeArm(){
 	setMotorTarget(motorC,2000,40);
 	wait1Msec(2800);
 	stopMotors();
 }
 
+//Open the arm
 void openArm(){
 	setMotorTarget(motorC,-2000,40);
 	wait1Msec(2700);
 	stopMotors();
-}
-/*C,D,E,F,G,A,B*/
-float notes[] = {523.25,587.33,659.25,698.46,783.99,880,987.77};
-/*Db,D#,F,F#,G#,A#,C*/
-float n[] = { 277.18*2, 311.13*2, 349.23*2, 369.99*2, 415.30*2, 466.16*2, 523.25*2};
-float time[] = {75, 37,19,9};
-void play(bool run){
-	int t = 15;
-	while(run = true){
-		int rnd = random(4);
-		t = 10 + random(20);
-		playTone(notes[rnd],15);
-		//	delay(t*10);
-	}
-
 }
 
 //Quarternote fn
@@ -102,6 +74,7 @@ const int gh5 = 831;
 const int ch6 = 1109;
 const int dh6 = 1245;
 
+//Music array
 int song[] = {
 	f5,qn + en,
 	c6,en,
@@ -126,13 +99,16 @@ int song[] = {
 	ch6,en,
 	c6,qn,};
 
-
-void play1(){
-
+//Play the sond array
+void playMusic(){
+	
+	//Get size
 	int numNotes = sizeof(song)/sizeof(int);
 
+	//For every note
 	for (int i = 0; i < numNotes ; i += 2){
 
+		//Play
 		playTone(song[i],song[i + 1]/10);
 		wait1Msec(song[i + 1]);
 
