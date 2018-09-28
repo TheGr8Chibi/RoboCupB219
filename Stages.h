@@ -113,7 +113,7 @@ void Stage4(){
 	wait1Msec(1000);
 
 	//Drive til end of line
-	//The constant 5000, is a estimate. Precision is not a important here. 
+	//The constant 5000, is an estimate. Precision is not a important here. 
 	for(int a = 0; a < 5000; a++){
 		lineFollower(0.7, right, 40);
 	}
