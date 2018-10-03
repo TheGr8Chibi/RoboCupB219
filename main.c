@@ -5,10 +5,10 @@
 
 //Variables
 //The color of the blacklines
-const int blackLine = 18;
+const int blackLine = 23;
 //The color which the "turn to white" uses
 const int white = 50;
-int lineFollowTarget = 67;
+int lineFollowTarget = 60;
 
 //Constants used to make code more readable
 const bool right = true;
@@ -28,8 +28,7 @@ task sound(){
 task main()
 {
 	//Start sound
-	setSoundVolume(0);
-	startTask(sound);
+	setSoundVolume(100);
 
 	//Run stages
 	Stage1();
@@ -43,6 +42,7 @@ task main()
 	Stage7();
 	//Stage 6 reversed
 	Stage6(false);
+	startTask(sound);
 	Stage9();
 
 }

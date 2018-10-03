@@ -11,8 +11,8 @@ void Stage1(){
 	JumpLine(2);
 	lfToBlack(55, left);
 
-	setMotorSync(motorA, motorB, 100, 20);
-	wait1Msec(200);
+	setMotorSyncEncoder(motorA, motorB, 100,80, 20);
+	waitUntilMotorStop(motorA);
 	stopMotors();
 
 	//Stop 2
@@ -34,7 +34,7 @@ void Stage2(){
 	//Stop 3
 	//Make the turn with slower speed
 	lfToBlackSpeed(blackLine, right, 30);
-	
+
 	//Drive to turn
 	JumpLine(3);
 	wait1Msec(2000);
@@ -49,7 +49,7 @@ void Stage2(){
 	//In this section it should run closer to the middle
 	int oldlineFollowTarget = lineFollowTarget;
 	lineFollowTarget = 50;
-	
+
 	while(getUSDistance(S1) > 5.5){
 		lineFollower(0.7, left,15);
 	}
@@ -72,7 +72,7 @@ void Stage2(){
 	openArm();
 	wait1Msec(3000);
 
-	while(getUSDistance(S1) > 6){
+	while(getUSDistance(S1) > 5.6){
 		setMotorSync(motorA,motorB,0,10);
 	}
 
@@ -87,33 +87,33 @@ void Stage3(){
 
 	//Go back
 	setMotorSync(motorA, motorB,0,-40);
-	wait1Msec(1700);
+	wait1Msec(1750);
 
 	//Turn back to line
 	setMotorTarget(motorB, 1000, 40);
-	wait1Msec(800);
+	wait1Msec(750);
 
 	stopMotors();
-	
+
 	//Go to first black. But make it extra sensitive, as the bottle is pulling to sensor closer to the ground
 	lfToBlackSpeed(blackLine + 5, right, 30);
 
 	//Jump over black line
 	JumpLine(2);
-	
+
 	//Continue
 	lfToBlackSpeed(blackLine + 5, right, 30);
 }
 
 void Stage4(){
-	
+
 	lfToBlack(blackLine, right);
 	stopMotors();
 
 	wait1Msec(1000);
 
 	//Drive til end of line
-	//The constant 5000, is an estimate. Precision is not a important here. 
+	//The constant 5000, is an estimate. Precision is not a important here.
 	for(int a = 0; a < 5000; a++){
 		lineFollower(0.7, right, 40);
 	}
@@ -121,14 +121,14 @@ void Stage4(){
 
 	//Turn 90 deg
 	setMotorTarget(motorB, 1000, 40);
-	wait1Msec(400);
+	wait1Msec(500);
 
 	//Forward
 	JumpLine(3);
 
 	//Turn back
 	setMotorTarget(motorB, 1000, -40);
-	wait1Msec(450);
+	wait1Msec(700);
 
 	//Take the turn slowly
 	lfToBlackSpeed(blackLine,right, 30);
@@ -145,7 +145,7 @@ void Stage5(){
 	JumpLine(8);
 
 	openArm();
-	
+
 	//Wait til arm open
 	waitUntilMotorStop(motorC);
 
@@ -212,6 +212,7 @@ void Stage6(bool r){
 	stopMotors();
 
 	playTone(550, 30);
+	lineFollowTarget += 5;
 	lfToBlackSpeed(blackline, r, 30);
 }
 
@@ -224,7 +225,7 @@ void Stage7(){
 	waitUntilMotorStop(motorB);
 
 	//Drive closer
-	while ( getUSDistance(S1) > 15 ) {
+	while ( getUSDistance(S1) > 13 ) {
 		setMotorSync(motorA, motorB, 0, 20);
 	}
 	stopMotors();
@@ -272,7 +273,7 @@ void Stage9(){
 	JumpLine(1);
 
 	setMotorSpeed(motorA,40);
-	wait1Msec(800);
+	wait1Msec(400);
 	stopMotors();
 
 	//Drive to end and count
@@ -282,13 +283,13 @@ void Stage9(){
 		counter++;
 	}
 	stopMotors();
-	
+
 	//Go back
 	setMotorSync(motorA, motorB, 0, -20);
 	wait1Msec(700);
 
 	playTone(440, 15);
-	
+
 	//Turn arround
 	setMotorSyncEncoder(motorA, motorB, 100, 300, 20);
 	waitUntilMotorStop(motorA);

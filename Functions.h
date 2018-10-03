@@ -12,7 +12,7 @@ void lineFollower(float multiplier, bool side, int speed){
 	string t1;
 	//Read from sensor
 	int col1 = getColorReflected(S2);
-	
+
 	//Print to screen
 	sprintf(t1,"farve: %d", col1);
 	displayCenteredBigTextLine(1,t1);
@@ -30,7 +30,7 @@ void lfToBlackSpeed(int threshold, bool side, int speed){
 	//Linefollow intil it reads black
 	while(getColorReflected(S2) > threshold){
 		//Values for following the yellow lines
-		lineFollower(0.7, side,speed);
+		lineFollower(0.75, side,speed);
 	}
 	stopMotors();
 }
@@ -101,7 +101,7 @@ int song[] = {
 
 //Play the sond array
 void playMusic(){
-	
+
 	//Get size
 	int numNotes = sizeof(song)/sizeof(int);
 
